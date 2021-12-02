@@ -6,10 +6,10 @@ Requirements:
 
 Since there very few aesthic looking tkinter application out there, I tought I'd make an aesthetic login system.
 # Main page
-![Start page](StartPage.png)
+![Start page](Images/StartPage.png)
 
 # Login page
-![LoginPage](LoginPage.png)
+![LoginPage](Imagess/LoginPage.png)
 
 # Registration Page
-![RegistrationPage](RegistrationPage.png)
+![RegistrationPage](Images/RegistrationPage.png)

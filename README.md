@@ -9,7 +9,7 @@ Since there very few aesthic looking tkinter application out there, I tought I'd
 ![Start page](Images/StartPage.png)
 
 # Login page
-![LoginPage](Imagess/LoginPage.png)
+![LoginPage](Images/LoginPage.png)
 
 # Registration Page
 ![RegistrationPage](Images/RegistrationPage.png)

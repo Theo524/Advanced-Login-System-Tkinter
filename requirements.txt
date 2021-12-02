@@ -1,0 +1,3 @@
+requests~=2.25.1
+ttkthemes~=3.2.2
+tkcalendar~=1.6.1

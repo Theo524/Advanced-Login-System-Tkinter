@@ -1,5 +1,5 @@
 # Login-System-Tkinter
-Secure login system made with python tkinter.
+Secure login system made with python tkinter. To run the program run 'main.py'.
 
 Requirements:
 - Python 3

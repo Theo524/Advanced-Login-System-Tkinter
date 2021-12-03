@@ -16,8 +16,10 @@ class StartApp(Tk):
 
         # Attributes
         #self.resizable(0, 0)
-        self.geometry('1000x620')
+        self.geometry('500x600')
         self.title('Welcome')
+        photo = PhotoImage(file=os.getcwd() + "\\widgets\\app_img\\user_icon.png")
+        self.iconphoto(False, photo)
 
         # themes
         self.style = ThemedStyle(self)
@@ -33,6 +35,9 @@ class StartApp(Tk):
 
         # starting frame
         self.switch_frame(self.frames['start'])
+
+        photo = PhotoImage(file=os.getcwd() + "\\widgets\\app_img\\user_icon.png")
+        self.iconphoto(False, photo)
 
     def switch_frame(self, frame_class):
         new_frame = frame_class(self, width=1000, height=620)
@@ -67,13 +72,13 @@ class StartWindow(ttk.Frame):
         # Login Button
         ttk.Button(self.scene, text="Login",
                     command=self.login,
-                   style='start_page.TButton')\
+                   style='start_page.TButton', cursor='hand2')\
             .pack(pady=20, ipady=5, ipadx=10)
 
         # Registration button
         ttk.Button(self.scene, text="Register",
                    command=self.register,
-                   style='start_page.TButton')\
+                   style='start_page.TButton', cursor='hand2')\
             .pack(pady=20, ipady=5, ipadx=10)
 
         # Guest mode button
@@ -106,6 +111,7 @@ class StartWindow(ttk.Frame):
         # deiconify (unhide) the login system which was hidden
         # place 'LoginSystem' frame
         self.master.switch_frame(self.master.frames['login'])
+        self.master.title('Login')
 
     def register(self):
         """Displays registration window"""
@@ -113,3 +119,4 @@ class StartWindow(ttk.Frame):
         # We hide the start_app (withdraw),
         # and deiconify (unhide) the register system which was hidden
         self.master.switch_frame(self.master.frames['register'])
+        self.master.title('Register')

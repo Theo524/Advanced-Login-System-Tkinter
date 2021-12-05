@@ -1,5 +1,5 @@
 import os
-from tkinter import *
+import tkinter as tk
 from tkinter import ttk
 from ttkthemes import ThemedStyle
 
@@ -7,18 +7,22 @@ from widgets.login import LoginSystem
 from widgets.register import RegisterSystem
 
 
-class StartApp(Tk):
+class StartApp(tk.Tk):
     def __init__(self):
         """Start of application"""
 
-        Tk.__init__(self)
-        self.my_state = True
+        tk.Tk.__init__(self)
 
-        # Attributes
-        #self.resizable(0, 0)
+        # key variables - result of login system
+        self.logged_in = False
+        self.mode = None
+        self._credentials = ()
+
+        # class attributes
+        self.resizable(0, 0)
         self.geometry('500x600')
         self.title('Welcome')
-        photo = PhotoImage(file=os.getcwd() + "\\widgets\\app_img\\user_icon.png")
+        photo = tk.PhotoImage(file=os.getcwd() + "\\widgets\\app_img\\user_icon.png", master=self)
         self.iconphoto(False, photo)
 
         # themes
@@ -29,22 +33,38 @@ class StartApp(Tk):
         self.database = os.getcwd() + '\\database\\users.db'
         self.temp_files = os.getcwd() + '\\temp'
 
+        # other frames
         self._frame = None
-
         self.frames = {'start': StartWindow, 'login': LoginSystem, 'register': RegisterSystem}
 
         # starting frame
         self.switch_frame(self.frames['start'])
 
-        photo = PhotoImage(file=os.getcwd() + "\\widgets\\app_img\\user_icon.png")
-        self.iconphoto(False, photo)
-
     def switch_frame(self, frame_class):
+        """Switch current frame"""
         new_frame = frame_class(self, width=1000, height=620)
         if self._frame is not None:
             self._frame.destroy()
         self._frame = new_frame
         self._frame.pack(expand=True, fill='both')
+
+    def close_win(self):
+        """Close window"""
+        self.destroy()
+
+    @property
+    def get_credentials(self):
+        return self._credentials
+
+    def __str__(self):
+
+        if self.logged_in:
+            msg = f'Logged in as {self.mode}'
+
+        else:
+            msg = 'Not logged in'
+
+        return msg
 
 
 class StartWindow(ttk.Frame):
@@ -84,39 +104,35 @@ class StartWindow(ttk.Frame):
         # Guest mode button
         ttk.Button(self.scene, text="Enter as guest",
                    command=self.set_mode_guest,
-                   style='start_page.TButton',  state=DISABLED)\
+                   style='start_page.TButton')\
             .pack(pady=20, ipady=5, ipadx=10)
 
         # Just my name at the bottom
-        Label(self.scene, text="Developed by Theo Brown",
+        tk.Label(self.scene, text="Developed by Theo Brown",
               font=('Calibri', 10))\
             .pack()
 
     def set_mode_guest(self):
-        """Sets the game mode"""
+        """Logged in as guest"""
 
-        mode_file = self.master.temp_files + '\\mode.txt'
-        # Write the game mode 'guest' because user clicked 'enter as guest' button
-        with open(mode_file, 'w') as f:
-            f.write('guest')
+        # Save state
+        self.master.logged_in = True
+        self.master.mode = 'guest'
+        self.master.credentials = ('\'guest user\'',)
 
         # We quit the start_page and start_app to start the chess app in guest mode
-        self.master.my_state = False
-        self.master.quit()
+        self.master.close_win()
 
     def login(self):
-        """Displays login window"""
+        """Displays login page"""
 
-        # We hide the start_app (withdraw), and
-        # deiconify (unhide) the login system which was hidden
         # place 'LoginSystem' frame
         self.master.switch_frame(self.master.frames['login'])
         self.master.title('Login')
 
     def register(self):
-        """Displays registration window"""
+        """Displays registration page"""
 
-        # We hide the start_app (withdraw),
-        # and deiconify (unhide) the register system which was hidden
+        # place 'RegisterSystem' frame
         self.master.switch_frame(self.master.frames['register'])
         self.master.title('Register')

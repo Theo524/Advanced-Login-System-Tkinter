@@ -124,8 +124,7 @@ class LoginSystem(ttk.Frame):
         password = self.password_var.get()
 
         # Hash password
-        message = password.encode()
-        user_hashed_password = hashlib.blake2b(message).hexdigest()
+        user_hashed_password = RegisterSystem.hash_pass(password)
 
         # search for hashed password and username in database
         found = self.check_data(username, user_hashed_password)
@@ -135,23 +134,12 @@ class LoginSystem(ttk.Frame):
             # feedback
             messagebox.showinfo('Success', 'Successful login')
 
-            mode_file = self.temp_files + '//mode.txt'
-            user_file = self.temp_files + '//current_user.txt'
+            # save the state
+            self.master.mode = 'user'
+            self.master.logged_in = True
 
-            # save username to temp files
-            with open(user_file, 'w') as f:
-                f.write(username)
-
-            # Write mode type as 'user'
-            with open(mode_file, 'w') as f:
-                f.write('user')
-
-            # Set start_new_game to false
-            with open(os.getcwd() + '\\app\\chess_app\\all_settings\\data.txt', 'w') as f:
-                f.write('new_game:yes\n')
-                f.write('saved_game:no')
-                # quit the login system
-                self.master.close_win()
+            # quit the login system
+            self.master.close_win()
 
         else:
             # feedback for invalid data
@@ -173,6 +161,8 @@ class LoginSystem(ttk.Frame):
 
             # If there are any values in 'data' it means there is a match with the execute statement from c
             if data:
+                self.master._credentials = (data[0][0], data[0][1], data[0][2], data[0][3])
+
                 return True
 
             else:

@@ -342,31 +342,18 @@ class RegisterSystem(ttk.Frame):
             c = conn.cursor()
 
             with conn:
+                username = username.lower()
+                password = self.hash_pass(password)
+
                 # Insert values into the database (general)
-                c.execute("INSERT INTO users VALUES (:username, :password, :email)",
-                          {'username': username.lower(),
-                           'password': self.hash_pass(password),
-                           'email': email})
-
-                # Insert values into the database (settings)
-                c.execute("INSERT INTO user_settings VALUES (:user, :difficulty, :time, :game_type, "
-                          ":player_piece_color, :opponent_piece_color, :border_color, :board_color)",
-                          {'user': username.lower(), 'difficulty': 'medium', 'time': '02:30:00',
-                           'game_type': 'two_player', 'player_piece_color': 'black', 'opponent_piece_color': 'white',
-                           'border_color': 'black', 'board_color': 'brown'})
-
-                # Insert values into the database (statistics)
-                c.execute("INSERT INTO user_stats VALUES (:user, :number_of_games_played, :wins, :loses, "
-                          ":draws, :ranking)",
-                          {'user': username.lower(), 'number_of_games_played': 0, 'wins': 0,
-                           'loses': 0, 'draws': 0, 'ranking': 0})
+                c.execute("INSERT INTO users VALUES (:username, :password, :email, :date_of_birth)",
+                          {'username': username,
+                           'password': password,
+                           'email': email,
+                           'date_of_birth': date_of_birth})
 
                 # output database to console
                 c.execute("SELECT * FROM users")
-                print(c.fetchall())
-                c.execute("SELECT * FROM user_settings")
-                print(c.fetchall())
-                c.execute("SELECT * FROM user_stats")
                 print(c.fetchall())
 
             # ask user to leave or stay

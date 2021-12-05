@@ -1,5 +1,5 @@
 # Login-System-Tkinter
-Secure login system made with python tkinter. To run the program run 'main.py'.
+Secure login system made with python tkinter. To run the program run 'main.py'. If there is no database, it will be created automatically.
 
 Requirements:
 - Python 3
@@ -20,9 +20,37 @@ Features:
 - Aethetic tkinter gui
 
 # How it works
-This is the starting page where you can select whether to login or register.
-
+When in main.py create an instance of the StartApp(), this will show the aplication itself:
+```python
+>>> app = StartApp()
+```
 ![Start page](Images/StartPage.png)
+
+After having logged in as a user or guest the window will close, you can then get the following attributes.
+
+Having logged in:
+```python
+>>> print(app.logged_in)
+True
+
+>>> print(app)
+'Logged in as user/guest'
+
+>>> print(app.mode)
+'guest/user'
+```
+
+Closing window without login nor entering as guest:
+```python
+>>> print(app.logged_in)
+False
+
+>>> print(app)
+'Not logged in'
+
+>>> print(app.mode)
+None
+```
 
 ## Login page
 When you login you enter can enter a username and passsword which are verified in the database. You can hide and show the password.

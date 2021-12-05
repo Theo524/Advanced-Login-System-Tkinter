@@ -40,6 +40,9 @@ class StartApp(tk.Tk):
         # starting frame
         self.switch_frame(self.frames['start'])
 
+        # start application
+        self.mainloop()
+
     def switch_frame(self, frame_class):
         """Switch current frame"""
         new_frame = frame_class(self, width=1000, height=620)

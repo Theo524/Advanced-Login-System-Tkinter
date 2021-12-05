@@ -13,4 +13,3 @@ if __name__ == "__main__":
 
     # LOGIN APPLICATION
     app = StartApp()
-    app.mainloop()

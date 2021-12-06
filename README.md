@@ -1,5 +1,6 @@
 # Login-System-Tkinter
-Secure login system made with python tkinter. To run the program run 'main.py'. If there is no database, it will be created automatically.
+Secure login system made with python tkinter. To run the program run 'main.py'.
+If there is no database file, it will be created automatically.
 
 Requirements:
 - Python 3
@@ -9,15 +10,16 @@ To install the other requirements run this on command line:
 pip list --format=freeze > requirements.txt
 ```
 
-Features:
-- Login
-- Registration
+Main features:
+- Working login
+- Working registration
 - Secure hashed passwords (blake2b algorithm)
 - Plaaceholder entries
-- Show/hide password
-- Database storage
-- Retrieve and reset forgotten passwords through gmail
 - Aethetic tkinter gui
+- Database storage
+
+To browse the db file you can download this database browser: 
+- [DB Browser](https://sqlitebrowser.org/)
 
 # How it works
 When in main.py create an instance of the StartApp(), this will show the aplication itself:
@@ -53,15 +55,20 @@ None
 ```
 
 ## Login page
-When you login you enter can enter a username and passsword which are verified in the database. You can hide and show the password.
-You can also reset your password.
+The Login page has the following features:
+- Validate username and password. 
+- Hide and show the password.
+- Reset forgotten password through email.
+- Placeholder entries
+- Password hidden with '*'
 
 ![LoginPage](Images/LoginPage.png)
 
 ## Registration Page
-Register a new user and it will be stored into the database file 'users.db'.
+The Registration page has the following features:
+- Validation of data 
+- Appropiate feedback.
+- Data added and stored in 'users.db' file.
+- Placeholder entries
 
 ![RegistrationPage](Images/RegistrationPage.png)
-
-To browse the db file you can download this database browser: 
-- [DB Browser](https://sqlitebrowser.org/)

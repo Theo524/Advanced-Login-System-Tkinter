@@ -1,4 +1,4 @@
-# Login-System-Tkinter
+# Advanced-Login-System-Tkinter
 Secure login system made with python tkinter. To run the program run 'main.py'.
 If there is no database file, it will be created automatically.
 

@@ -146,7 +146,14 @@ class LoginSystem(ttk.Frame):
             messagebox.showerror('Error', 'Invalid credentials')
 
     def check_data(self, username, h_password):
-        """Check credentials are in db"""
+        """Check credentials are in db
+
+        :param str username: Username to check
+        :param str h_password: Hashed password to check
+
+        :returns: True if the user is found in the database, else False
+        :rtype: bool
+        """
 
         conn = sqlite3.connect(self.database)
         c = conn.cursor()
@@ -245,7 +252,11 @@ class ForgotPassword(ttk.Frame):
         self.lower_frame.pack()
 
     def check_email_in_db(self):
-        """Check whether the email entered is in database"""
+        """Check whether the email entered is in database
+
+        :returns: True if the email entered is in the database, else False
+        :rtype: bool
+        """
 
         conn = sqlite3.connect(self.database)
         c = conn.cursor()
@@ -316,7 +327,15 @@ class ForgotPassword(ttk.Frame):
                 return False
 
     def send_email(self, passcode, email, user):
-        """Send email message to an account"""
+        """Send email message to an account
+
+        :param str passcode: Passcode sent to valid email
+        :param str email: Email account
+        :param str user: Username, used to form message
+
+        :returns: True if the email was succesfully sent, else False
+        :rtype: bool
+        """
 
         valid = self.validate(email)
         if valid:
@@ -354,7 +373,13 @@ class ForgotPassword(ttk.Frame):
 
     @staticmethod
     def validate(email):
-        """Check whether a email account exists"""
+        """Check whether a email account exists(More validation)
+
+        :param str email: Email to be checked
+
+        :returns: True if the email is valid, else False
+        :rtype: bool
+        """
 
         email_address = email
 

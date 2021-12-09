@@ -139,7 +139,13 @@ class RegisterSystem(ttk.Frame):
 
     @staticmethod
     def check_email(email):
-        """Checks whether the email account user entered exists"""
+        """Checks whether the email account user entered exists
+
+        :param str email: Email address to be checked
+
+        :returns: True if the email exists, else False (must be gmail domain)
+        :rtype: bool
+        """
         print(email)
 
         try:
@@ -180,7 +186,13 @@ class RegisterSystem(ttk.Frame):
 
     @staticmethod
     def calculate_age(dob):
-        """Calculate the user age"""
+        """Calculate the user age
+
+        :param str dob: Date of birth
+
+        :returns: User age based on date of birth
+        :rtype: int
+        """
 
         # get today's date
         today = date.today()
@@ -194,7 +206,13 @@ class RegisterSystem(ttk.Frame):
 
     @staticmethod
     def hash_pass(password):
-        """Hash the password for better security"""
+        """Hash the password for better security
+
+        :param str password: Password to be hashed
+
+        :returns: Hashed password
+        :rtype: str
+        """
 
         # password hashing
         message = password.encode()
@@ -205,7 +223,13 @@ class RegisterSystem(ttk.Frame):
 
     @staticmethod
     def check_pass(password):
-        """Check if the password meets the requirements"""
+        """Check if the password meets the requirements
+
+        :param str password: Password to be checked
+
+        :returns: True if the password meets the requirements,  else False
+        :rtype: bool
+        """
 
         # Characters the password must contain
         # Upper case letters, lower case letters, symbols and numbers are a requirement
@@ -249,7 +273,13 @@ class RegisterSystem(ttk.Frame):
             return False
 
     def username_in_database(self, username):
-        """Ensure only unique usernames are stored in databse"""
+        """Ensure only unique usernames are stored in database
+
+        :param str username: Name to be checked in database
+
+        :returns: True if the username already exists, else False
+        :rtype: bool
+        """
 
         conn = sqlite3.connect(self.database)
         c = conn.cursor()

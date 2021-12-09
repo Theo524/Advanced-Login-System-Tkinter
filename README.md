@@ -1,5 +1,7 @@
 # Advanced-Login-System-Tkinter
-Secure login system made with python tkinter. To run the program run 'main.py'.
+Tkinter is known for its outdated GUi. So for this project I tried to make an aesthetic gui with an advanced login system. 
+
+This is a secure login system made with python tkinter. To run the program run 'main.py'.
 If there is no database file, it will be created automatically.
 
 Requirements:

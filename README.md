@@ -4,7 +4,7 @@ Tkinter is known for its outdated GUi. So for this project I tried to make an ae
 This is a secure login system made with python tkinter. To run the program run 'main.py'.
 If there is no database file, it will be created automatically.
 
-Requirements:
+### Requirements:
 - Python 3
 
 To install the other requirements run this on command line:
